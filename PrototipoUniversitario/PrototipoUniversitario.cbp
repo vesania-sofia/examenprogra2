@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,7 +34,17 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/ClsAulas.h" />
+		<Unit filename="include/ClsCarreras.h" />
+		<Unit filename="include/ClsCursos.h" />
+		<Unit filename="include/ClsFacultad.h" />
+		<Unit filename="include/ClsSedes.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/ClsAulas.cpp" />
+		<Unit filename="src/ClsCarreras.cpp" />
+		<Unit filename="src/ClsCursos.cpp" />
+		<Unit filename="src/ClsFacultad.cpp" />
+		<Unit filename="src/ClsSedes.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

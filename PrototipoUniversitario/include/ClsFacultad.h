@@ -5,12 +5,28 @@
 class ClsFacultad
 {
     public:
-        ClsFacultad();
-        virtual ~ClsFacultad();
+        ClsPuestos( int = 0, string = "", string = "");
+
+        void mestablecerNumero( int) ;
+        int mobtenerNumero() const;
+
+        void mestablecerNombreF( string );
+        string mobtenerNombreF() const;
+
+        void mestablecerEstatus ( string );
+        string mobtenerEstatus() const;
+
 
     protected:
 
     private:
+        int m_iNumeroFacultad;
+        char m_sNombreFacultad[ 20 ];
+        char m_sNombreEstatus[ 20 ];
+
+
 };
 
-#endif // CLSFACULTAD_H
+
+
+#endif // PUESTO_H

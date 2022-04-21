@@ -1,11 +1,78 @@
 #include "ClsFacultad.h"
+#include<conio.h>
+#include<iomanip>
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<cstdlib>
+#include<cstring>
 
-ClsFacultad::ClsFacultad()
+ClsFacultad::ClsFacultad(int ivalorNumeroF, string svalorNombreFacultad, string svalorEstatus)
 {
-    //ctor
+    mestablecerNumeroF(ivalorNumeroF);
+    mestablecerNombreF(svalorNombreFacultad);
+    mestablecerEstatus(svalorEstatus);
 }
 
-ClsFacultad::~ClsFacultad()
+int ClsFacultad::mobtenerNumero() const
 {
-    //dtor
+    return m_iNumeroFacultad;
 }
+
+void ClsFacultad::mestablecerNumeroF (int ivalorNumeroF)
+{
+    m_iNumeroFacultad = ivalorNumeroF;
+}
+
+string ClsFacultad::mobtenerNombreF() const
+{
+    return m_sNombreFacultad;
+}
+
+
+void ClsFacultad::mestablecerNombreF( string scadenaNombreF )
+{
+
+   const char *svalorNombreFacultad = scadenaNombreF.data();
+   int ilongitud = strlen( svalorNombreFacultad );
+   ilongitud = ( ilongitud < 20 ? ilongitud : 19 );
+   strncpy( m_sNombreFacultad, svalorNombreFacultad, ilongitud );
+
+
+   m_sNombreFacultad[ ilongitud ] = '\0';
+
+}
+
+string ClsFacultad::mobtenerNombreEstatus() const
+{
+    return m_sNombreEstatus;
+}
+
+
+void ClsFacultad::mestablecerNombreEstatus( string scadenaNombreEstatus )
+{
+
+   const char *svalorNombreEstatus = scadenaNombreEstatus.data();
+   int ilongitud = strlen( svalorNombreEstatus );
+   ilongitud = ( ilongitud < 20 ? ilongitud : 19 );
+   strncpy( m_sNombreEstatus, svalorNombreEstatus, ilongitud );
+
+
+   m_sNombreEstatus[ ilongitud ] = '\0';
+
+}
+
+int obtenerCuentaFacultad( const char * const indicadorFacultad )
+{
+   int m_iNumeroPuesto;
+
+   // obtener el valor del número de cuenta
+   do {
+      cout << indicadorPuesto << " (1 - 100): ";
+      cin >> m_iNumeroPuesto;
+
+   } while ( m_iNumeroPuesto < 1 || m_iNumeroPuesto > 100 );
+
+   return m_iNumeroPuesto;
+
+} // fin de la función obtenerCuenta
