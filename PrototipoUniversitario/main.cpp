@@ -10,8 +10,7 @@ using namespace std;
 
 int main()
 {
-
-   int imenuPrincipal;
+  int imenuPrincipal;
    do
     {
 	system("cls");
@@ -49,5 +48,6 @@ int main()
 
 
     }while(imenuPrincipal!= 0);
+
 
 }
