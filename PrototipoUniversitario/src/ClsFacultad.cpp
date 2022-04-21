@@ -62,17 +62,3 @@ void ClsFacultad::mestablecerNombreEstatus( string scadenaNombreEstatus )
 
 }
 
-int obtenerCuentaFacultad( const char * const indicadorFacultad )
-{
-   int m_iNumeroPuesto;
-
-   // obtener el valor del número de cuenta
-   do {
-      cout << indicadorPuesto << " (1 - 100): ";
-      cin >> m_iNumeroPuesto;
-
-   } while ( m_iNumeroPuesto < 1 || m_iNumeroPuesto > 100 );
-
-   return m_iNumeroPuesto;
-
-} // fin de la función obtenerCuenta

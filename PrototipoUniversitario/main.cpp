@@ -305,3 +305,32 @@ void nuevoFacultad( fstream &insertarEnArchivoFacultad )
            << " ya contiene informacion." << endl;
 
 } // fin de la función nuevoRegistro
+int obtenerCuentaFacultad( const char * const indicadorFacultad )
+{
+   int m_iNumeroFacultad;
+
+   // obtener el valor del número de cuenta
+   do {
+      cout << indicadorFacultad << " (1 - 100): ";
+      cin >> m_iNumeroFacultad;
+
+   } while ( m_iNumeroFacultad < 1 || m_iNumeroFacultad > 100 );
+
+   return m_iNumeroFacultad;
+
+} // fin de la función obtenerCuenta
+void crearArchivoCreditoFacultad()
+{
+    ofstream archivoFacultad("registrosFacultad.dat", ios::out | ios::binary);
+    if(!archivoFacultad)
+    {
+        cerr<<"No se abrio el archivo"<<endl;
+        exit(1);
+    }
+    ClsFacultad FacultadEnBlanco;
+    for(int i=0; i<100; i++)
+    {
+        archivoFacultad.write(reinterpret_cast<const char * > (&FacultadEnBlanco), sizeof(ClsFacultad));
+    }
+}
+
