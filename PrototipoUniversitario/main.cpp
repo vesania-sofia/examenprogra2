@@ -233,6 +233,7 @@ int obtenerCuentaFacultad( const char * const indicadorFacultad )
    return m_iNumeroFacultad;
 
 } // fin de la función obtenerCuenta
+
 void crearArchivoCreditoFacultad()
 {
     ofstream archivoFacultad("registrosFacultad.dat", ios::out | ios::binary);
@@ -247,7 +248,9 @@ void crearArchivoCreditoFacultad()
         archivoFacultad.write(reinterpret_cast<const char * > (&FacultadEnBlanco), sizeof(ClsFacultad));
     }
 }
+
 void actualizarRegistroP( fstream &actualizarArchivoPuesto )
+
 {
    // obtener el número de cuenta a actualizar
    int NumeroFacultad = obtenerCuentaFacultad( "Escriba la facultad que desea actualizar" );
@@ -291,6 +294,7 @@ void actualizarRegistroP( fstream &actualizarArchivoPuesto )
          << " no tiene informacion." << endl;
 
 } // fin de la función actualizarRegistro
+
 void eliminarRegistroF (fstream &eliminarDeArchivoFacultad )
 {
    // obtener número de cuenta a eliminar
