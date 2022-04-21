@@ -1,6 +1,10 @@
+#include<string>
+#include<iostream>
+
 #ifndef CLSFACULTAD_H
 #define CLSFACULTAD_H
 
+using std::string;
 
 class ClsFacultad
 {

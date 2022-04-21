@@ -1,4 +1,4 @@
-include<conio.h>
+#include<conio.h>
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -25,6 +25,7 @@ int main()
 int m_iNumeroFacultad=0;
 char m_sNombreFacultad[ 0 ];
 char m_sNombreEstatus[ 0 ];
+
 
     int imenuPrincipal;
    do
@@ -94,9 +95,9 @@ char m_sNombreEstatus[ 0 ];
                             cout<<"|   SISTEMA GESTION FACULTAD  |"<<endl;
                             cout<<"-------------------------------"<<endl;
                             cout<<"1. Ingreso Facultad"<<endl;
-                            cout<<"2. Modifica Facultad""<<endl;
+                            cout<<"2. Modifica Facultad"<<endl;
                             cout<<"3. Imprimir Regisro de Facultades"<<endl;
-                            cout<<"4. Borra Facultad""<<endl;
+                            cout<<"4. Borra Facultad"<<endl;
                             cout<<"0. Volver al menu superior"<<endl;
 
                             cout<<"-------------------------------"<<endl;
@@ -109,73 +110,31 @@ char m_sNombreEstatus[ 0 ];
                             {
                             case 1:
                                 {
-                                    //agregando empleados
+                                    //agregando
                                     system("cls");
                                     nuevaFacultad(archivoFacultad);
-                                    accion="Facultad Creado";
-                                    ofstream bitacora("bitacora.txt", ios::app | ios::out);
-                                    if (!bitacora)
-                                    {
-                                        cerr << "No se pudo abrir el archivo." << endl;
-                                        cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
-                                        exit ( 3 );
-                                    }
 
-                                    bitacora<<left<<setw(8)<< "Codigo:" <<left<<setw(5)<< codigo <<left<<setw(8)<< "Accion:" <<left<<setw(30)<< accion
-                                    <<left<<setw(5)<< "Dia:" <<left<<setw(5)<< fecha->tm_mday <<left<<setw(5)<< "Mes:" <<left<<setw(5)<< fecha->tm_mon+1
-                                    <<left<<setw(5)<< "Año:" <<left<<setw(6)<< fecha->tm_year+1900 <<left<<setw(6)<< "Hora:" <<left<<setw(5)<< fecha->tm_hour
-                                    <<left<<setw(8)<< "Minuto:" <<left<<setw(5)<< fecha->tm_min <<left<<setw(9)<< "Segundo:" <<left<<setw(5)<< fecha->tm_sec << endl;
-                                    bitacora.close();
+
                                 }
                                 break;
                             case 2:
                                 {
-                                    actualizarRegistro(archivoFacultad);
-                                    accion="Modificacion Facultad";
-                                    ofstream bitacora("bitacora.txt", ios::app | ios::out);
-                                    if (!bitacora)
-                                    {
-                                        cerr << "No se pudo abrir el archivo." << endl;
-                                        cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
-                                        exit ( 3 );
-                                    }
+                                    actualizarRegistroF(archivoFacultad);
 
-                                    bitacora<<left<<setw(8)<< "Codigo:" <<left<<setw(5)<< codigo <<left<<setw(8)<< "Accion:" <<left<<setw(30)<< accion
-                                    <<left<<setw(5)<< "Dia:" <<left<<setw(5)<< fecha->tm_mday <<left<<setw(5)<< "Mes:" <<left<<setw(5)<< fecha->tm_mon+1
-                                    <<left<<setw(5)<< "Año:" <<left<<setw(6)<< fecha->tm_year+1900 <<left<<setw(6)<< "Hora:" <<left<<setw(5)<< fecha->tm_hour
-                                    <<left<<setw(8)<< "Minuto:" <<left<<setw(5)<< fecha->tm_min <<left<<setw(9)<< "Segundo:" <<left<<setw(5)<< fecha->tm_sec << endl;
-                                    bitacora.close();
+
                                 }
                                 break;
                             case 3:
                                 {
-                                    imprimirRegistro(archivoFacultad);
-                                    accion="Imprimir Facultad";
-                                    ofstream bitacora("bitacora.txt", ios::app | ios::out);
-                                    if (!bitacora)
-                                    {
-                                        cerr << "No se pudo abrir el archivo." << endl;
-                                        cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
-                                        exit ( 3 );
-                                    }
+                                    imprimirRegistroF(archivoFacultad);
 
-                                    bitacora<<left<<setw(8)<< "Codigo:" <<left<<setw(5)<< codigo <<left<<setw(8)<< "Accion:" <<left<<setw(30)<< accion
-                                    <<left<<setw(5)<< "Dia:" <<left<<setw(5)<< fecha->tm_mday <<left<<setw(5)<< "Mes:" <<left<<setw(5)<< fecha->tm_mon+1
-                                    <<left<<setw(5)<< "Año:" <<left<<setw(6)<< fecha->tm_year+1900 <<left<<setw(6)<< "Hora:" <<left<<setw(5)<< fecha->tm_hour
-                                    <<left<<setw(8)<< "Minuto:" <<left<<setw(5)<< fecha->tm_min <<left<<setw(9)<< "Segundo:" <<left<<setw(5)<< fecha->tm_sec << endl;
-                                    bitacora.close();
-                                }
+
                                 break;
                             case 4:
                                 {
-                                    eliminarRegistro(archivoFacultad);
-                                    accion="Eliminar Facultad";
-                                    ofstream bitacora("bitacora.txt", ios::app | ios::out);
-                                    if (!bitacora)
-                                    {
-                                        cerr << "No se pudo abrir el archivo." << endl;
-                                        cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
-                                        exit ( 3 );
+                                    eliminarRegistroF(archivoFacultad);
+
+
                                 }
                                 break;
                             case 0:
@@ -185,6 +144,8 @@ char m_sNombreEstatus[ 0 ];
                                 getch();
                             }
                         }while(iseleccionMenuFacultad!= 0);
+
+                }while(choice2!= 0);
 
         }
         break;
@@ -203,9 +164,9 @@ char m_sNombreEstatus[ 0 ];
 
 }
 
-void nuevoFacultad( fstream &insertarEnArchivoFacultad )
+void nuevaFacultad( fstream &insertarEnArchivoFacultad )
 {
-   // obtener el número de puesto a crear
+    // obtener el número de puesto a crear
    int m_iNumeroFacultad = obtenerCuentaFacultad( "Escriba el nuevo numero de facultad" );
 
    // desplazar el apuntador de posición del archivo hasta el registro correcto en el archivo
@@ -219,7 +180,7 @@ void nuevoFacultad( fstream &insertarEnArchivoFacultad )
 
    // crear el registro, si éste no existe ya
    if ( Facultades.mobtenerNumero() == 0 ) {
-///////////////////////////////////////////////////////////////////////
+
       char m_sNombreFacultad[ 20 ];
       char m_sNombreEstatus[ 20 ];
 
@@ -257,6 +218,7 @@ void nuevoFacultad( fstream &insertarEnArchivoFacultad )
            << " ya contiene informacion." << endl;
 
 } // fin de la función nuevoRegistro
+
 int obtenerCuentaFacultad( const char * const indicadorFacultad )
 {
    int m_iNumeroFacultad;
