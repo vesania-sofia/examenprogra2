@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1650566990 source:c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\src\clsaulas.cpp
+	"ClsAulas.h"
+
+1650566990 c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\include\clsaulas.h
+
+1650566917 source:c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\src\clscarreras.cpp
+	"ClsCarreras.h"
+
+1650566917 c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\include\clscarreras.h
+
+1650566953 source:c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\src\clscursos.cpp
+	"ClsCursos.h"
+
+1650566953 c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\include\clscursos.h
+
+1650566883 source:c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\src\clsfacultad.cpp
+	"ClsFacultad.h"
+
+1650566883 c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\include\clsfacultad.h
+
+1650567000 source:c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\src\clssedes.cpp
+	"ClsSedes.h"
+
+1650566999 c:\users\sofia\progra1\proyectos\examenprogra2\prototipouniversitario\include\clssedes.h
+
