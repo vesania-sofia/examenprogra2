@@ -130,11 +130,8 @@ char m_sNombreEstatus[ 0 ];
                                 break;
                             case 2:
                                 {
-                                    //Consultar
-                                    system("cls");
-                                    consultarRegistro(archivoEmpleados);
-                                    getch();
-                                    accion="Consulta empleados";
+                                    actualizarRegistro(archivoFacultad);
+                                    accion="Modificacion Facultad";
                                     ofstream bitacora("bitacora.txt", ios::app | ios::out);
                                     if (!bitacora)
                                     {
@@ -152,8 +149,8 @@ char m_sNombreEstatus[ 0 ];
                                 break;
                             case 3:
                                 {
-                                    actualizarRegistro(archivoEmpleados);
-                                    accion="Modificacion Empleados";
+                                    imprimirRegistro(archivoFacultad);
+                                    accion="Imprimir Facultad";
                                     ofstream bitacora("bitacora.txt", ios::app | ios::out);
                                     if (!bitacora)
                                     {
@@ -171,59 +168,14 @@ char m_sNombreEstatus[ 0 ];
                                 break;
                             case 4:
                                 {
-                                    imprimirRegistro(archivoEmpleados);
-                                    accion="Imprimir Empleados";
+                                    eliminarRegistro(archivoFacultad);
+                                    accion="Eliminar Facultad";
                                     ofstream bitacora("bitacora.txt", ios::app | ios::out);
                                     if (!bitacora)
                                     {
                                         cerr << "No se pudo abrir el archivo." << endl;
                                         cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
                                         exit ( 3 );
-                                    }
-
-                                    bitacora<<left<<setw(8)<< "Codigo:" <<left<<setw(5)<< codigo <<left<<setw(8)<< "Accion:" <<left<<setw(30)<< accion
-                                    <<left<<setw(5)<< "Dia:" <<left<<setw(5)<< fecha->tm_mday <<left<<setw(5)<< "Mes:" <<left<<setw(5)<< fecha->tm_mon+1
-                                    <<left<<setw(5)<< "Año:" <<left<<setw(6)<< fecha->tm_year+1900 <<left<<setw(6)<< "Hora:" <<left<<setw(5)<< fecha->tm_hour
-                                    <<left<<setw(8)<< "Minuto:" <<left<<setw(5)<< fecha->tm_min <<left<<setw(9)<< "Segundo:" <<left<<setw(5)<< fecha->tm_sec << endl;
-                                    bitacora.close();
-                                }
-                                break;
-                            case 5:
-                                {
-                                    eliminarRegistro(archivoEmpleados);
-                                    accion="Eliminar Empleados";
-                                    ofstream bitacora("bitacora.txt", ios::app | ios::out);
-                                    if (!bitacora)
-                                    {
-                                        cerr << "No se pudo abrir el archivo." << endl;
-                                        cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
-                                        exit ( 3 );
-                                    }
-
-                                    bitacora<<left<<setw(8)<< "Codigo:" <<left<<setw(5)<< codigo <<left<<setw(8)<< "Accion:" <<left<<setw(30)<< accion
-                                    <<left<<setw(5)<< "Dia:" <<left<<setw(5)<< fecha->tm_mday <<left<<setw(5)<< "Mes:" <<left<<setw(5)<< fecha->tm_mon+1
-                                    <<left<<setw(5)<< "Año:" <<left<<setw(6)<< fecha->tm_year+1900 <<left<<setw(6)<< "Hora:" <<left<<setw(5)<< fecha->tm_hour
-                                    <<left<<setw(8)<< "Minuto:" <<left<<setw(5)<< fecha->tm_min <<left<<setw(9)<< "Segundo:" <<left<<setw(5)<< fecha->tm_sec << endl;
-                                    bitacora.close();
-                                }
-                                break;
-                            case 6:
-                                {
-                                    buscarEmpleado(archivoEmpleados);
-                                    accion="Buscar Empleados";
-                                    ofstream bitacora("bitacora.txt", ios::app | ios::out);
-                                    if (!bitacora)
-                                    {
-                                        cerr << "No se pudo abrir el archivo." << endl;
-                                        cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
-                                        exit ( 3 );
-                                    }
-
-                                    bitacora<<left<<setw(8)<< "Codigo:" <<left<<setw(5)<< codigo <<left<<setw(8)<< "Accion:" <<left<<setw(30)<< accion
-                                    <<left<<setw(5)<< "Dia:" <<left<<setw(5)<< fecha->tm_mday <<left<<setw(5)<< "Mes:" <<left<<setw(5)<< fecha->tm_mon+1
-                                    <<left<<setw(5)<< "Año:" <<left<<setw(6)<< fecha->tm_year+1900 <<left<<setw(6)<< "Hora:" <<left<<setw(5)<< fecha->tm_hour
-                                    <<left<<setw(8)<< "Minuto:" <<left<<setw(5)<< fecha->tm_min <<left<<setw(9)<< "Segundo:" <<left<<setw(5)<< fecha->tm_sec << endl;
-                                    bitacora.close();
                                 }
                                 break;
                             case 0:
@@ -232,7 +184,7 @@ char m_sNombreEstatus[ 0 ];
                                 cout<<"Opcion invalida...Por favor prueba otra vez..";
                                 getch();
                             }
-                        }while(iseleccionMenuEmpleados!= 0);
+                        }while(iseleccionMenuFacultad!= 0);
 
         }
         break;
@@ -333,4 +285,87 @@ void crearArchivoCreditoFacultad()
         archivoFacultad.write(reinterpret_cast<const char * > (&FacultadEnBlanco), sizeof(ClsFacultad));
     }
 }
+void actualizarRegistroP( fstream &actualizarArchivoPuesto )
+{
+   // obtener el número de cuenta a actualizar
+   int NumeroFacultad = obtenerCuentaFacultad( "Escriba la facultad que desea actualizar" );
+
+   // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+   actualizarArchivoFacultad.seekg(
+      ( NumeroFacultad - 1 ) * sizeof( ClsFacultad ) );
+
+   // leer el primer registro del archivo
+   ClsFacultad Facultades;
+   actualizarArchivoFacultades.read( reinterpret_cast< char * >( &Facultades ),
+      sizeof( ClsFacultad ) );
+
+   // actualizar el registro
+   if (Facultades.mobtenerNumero() != 0 ) {
+      mostrarLineaF( cout, Facultades );
+
+      // solicitar al usuario que especifique la transacción
+      cout << "\nEscriba el nombre de la Facultad: ";
+      char m_sNombreFacultad [ 20 ];
+      cin >> m_sNombreFacultad;
+
+      // actualizar el saldo del registro
+      Facultades.mestablecerNombreF( m_sNombreFacultad );
+      mostrarLineaF( cout, Facultades );
+
+      // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+      actualizarArchivoFacultad.seekp(
+         ( NumeroFacultad - 1 ) * sizeof( ClsFacultad ) );
+
+      // escribir el registro actualizado sobre el registro anterior en el archivo
+      actualizarArchivoFacultad.write(
+         reinterpret_cast< const char * >( &Facultades ),
+         sizeof( ClsFacultad ) );
+
+   } // fin de instrucción if
+
+   // mostrar error si la cuenta no existe
+   else
+      cerr << "El puesto #" << NumeroFacultad
+         << " no tiene informacion." << endl;
+
+} // fin de la función actualizarRegistro
+void eliminarRegistroF (fstream &eliminarDeArchivoFacultad )
+{
+   // obtener número de cuenta a eliminar
+   int numeroFacultad= obtenerCuentaFacultad( "Escriba la facultad a eliminar" );
+
+   // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+   eliminarDeArchivoFacultad.seekg(
+      ( numeroFacultad - 1 ) * sizeof( ClsFacultad ) );
+
+   // leer el registro del archivo
+   ClsFacultad Facultades;
+   eliminarDeArchivoFacultad.read( reinterpret_cast< char * >( &Facultades ),
+      sizeof( ClsFacultad ) );
+
+   // eliminar el registro, si es que existe en el archivo
+   if ( Facultades.mobtenerNumero() != 0 ) {
+      ClsFacultad FacultadesEnBlanco;
+
+      // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+      eliminarDeArchivoFaculatdes.seekp( ( numeroFacultad - 1 ) *
+         sizeof( ClsFacultad ) );
+
+      // reemplazar el registro existente con un registro en blanco
+      eliminarDeArchivoFacultad.write(
+         reinterpret_cast< const char * >( &FacultadesEnBlanco ),
+         sizeof( ClsFacultad ) );
+
+      cout << "La facultad #" << numeroFacultad << " eliminado correctamente.\n";
+
+   } // fin de instrucción if
+
+   // mostrar error si el registro no existe
+   else
+   {
+       cerr << "La facultad #" << numeroFacultad << " esta vacia.\n";
+   }
+   getch();
+
+} // fin de eliminarRegistro
 
